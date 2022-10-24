@@ -5,6 +5,7 @@ RUN apt update &&\
     apt install -y netcat
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
+RUN pip install gunicorn
 COPY . /app
 EXPOSE 8000
 RUN chmod u+x entrypoint.sh
