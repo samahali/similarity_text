@@ -1,0 +1,29 @@
+<form action="{% url 'text_matching:search' %}" method="post" class="mt-5 mx-5">
+<div class="form-group">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-6">
+         <select class="form-select" name="key" aria-label="Similarity Select">
+            <option value="">Select From Menu</option>
+             {% for key in keys %}
+                <option value="{{ key }}">{{ key }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="col-6">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-6">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="alert alert-warning">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</form>

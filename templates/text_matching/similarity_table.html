@@ -1,0 +1,25 @@
+{% extends 'text_matching/base.html' %}
+{% block content %}
+<div class="text-center my-3">Text Matching Similarity above 50%</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Keys</th>
+      <th scope="col">Value</th>
+      <th scope="col">Matching Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for matched_item in matching_text %}
+        <tr>
+            {% if forloop.first %}
+                <td rowspan="{{ matching_text|length }}">{{ key }}</td>
+                {% endif %}
+            <td>{{ matched_item.value }}</td>
+            <td>{{ matched_item.score }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'text_matching:index' %}">Return to Search</a>
+{% endblock %}
